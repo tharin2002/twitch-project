@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Twitch Directory</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar
+    (ionInput)="onFilter($event)">
+  </ion-searchbar>
+  <ion-list>
+    <button ion-item *ngFor="let game of games" (click)="itemTapped($event, game)">
+      <ion-thumbnail item-left>
+        <img src="{{game.game.box.medium}}">
+      </ion-thumbnail>
+      {{game.game.name}}
+      <ion-badge item-right>
+        {{game.game.popularity}}
+      </ion-badge>
+    </button>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

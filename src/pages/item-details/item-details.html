@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button menuToggle *ngIf="!selectedItem">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Streams for {{selectedItem.game.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let stream of streams">
+      <ion-thumbnail item-left>
+        <img src="{{stream.preview.medium}}">
+      </ion-thumbnail>
+      {{stream.channel.display_name}}
+      <ion-badge item-right>
+        {{stream.viewers}}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
